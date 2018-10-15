@@ -1,14 +1,20 @@
 <div id="welcome">
   <div class="container">
     <h1>Welcome!</h1>
-    <hr/>
+    <hr />
     <div class="buttons">
       <a class="btn btn-info" href="/account/profile">Update my email</a>
-      
-      <a class="btn btn-success" href="/user/skills">My Skills</a>
     </div>
+
+    <br>
+
+    <% if(me.isSuperAdmin) { %>
+    <a class="btn btn-primary" href="/admin/manage-skills">Manage Skills</a>
+    <% } else { %>
+    <a class="btn btn-success" href="/user/skills">My Skills</a>
+    <% } %>
   </div>
 
-  
+
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

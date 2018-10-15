@@ -55,6 +55,10 @@ module.exports.routes = {
   'GET /user/skills': { action: 'user/skills' },
   'POST /api/v1/user/skill-add': { action: 'user/skill-add' },
 
+  'GET /admin/manage-skills': { action: 'admin/manage-skills' },
+  'POST /api/v1/admin/skill-testing': { action: 'admin/skill-testing' },
+  'POST /api/v1/admin/skill-judge': { action: 'admin/skill-judge' },
+
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

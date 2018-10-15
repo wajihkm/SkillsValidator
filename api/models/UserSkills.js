@@ -30,11 +30,11 @@ module.exports = {
 
     status: {
       type: 'string',
-      isIn: ['pending', 'testing', 'gadged'],
+      isIn: ['pending', 'testing', 'judged'],
       defaultsTo: 'pending'
     },
 
-    gadge: {
+    judge: {
       type: 'number',
       required: false,
       allowNull: true

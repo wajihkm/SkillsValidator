@@ -31,6 +31,8 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     const user = this.req.me;
+    const isAjax = this.req.wantsJSON;
+    const res = this.res;
 
     Skill.findOrCreate(
       { title: inputs.skill },
@@ -50,7 +52,11 @@ module.exports = {
         location: inputs.location
       })
 
-      return exits.success({});
+      if (isAjax) {
+        return exits.success({});
+      } else {
+        return res.redirect('/user/skills');
+      }
     });
   }
 
