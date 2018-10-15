@@ -1,0 +1,56 @@
+<div class="container">
+    <form action="/api/v1/user/skill-add" method="post">
+        <div class="row">
+            <div class="col">
+                <label for="skill">Skill</label>
+                <input type="text" class="form-control" name="skill" placeholder="Skill title">
+            </div>
+            <div class="col">
+                <label for="level">Level</label>
+                <input type="number" class="form-control" name="level" placeholder="level">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="years">Years of experince</label>
+                <input type="number" class="form-control" name="years" placeholder="Years of experince">
+            </div>
+            <div class="col">
+                <label for="location">City of experince</label>
+                <input type="text" class="form-control" name="location" placeholder="City where use Skill must of the time">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row col">
+            <button type="submit" class="btn btn-primary mb-2">Add</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <h3>My Skills</h3>
+    <ul>
+        <% skills.forEach(skill => { %>
+        <li>
+            <%= skill.skill.title %> -
+            <%= skill.level %> -
+            <%= skill.years %> -
+            <%= skill.location %>
+        </li>
+        <% }) %>
+    </ul>
+
+    <h3>All Skills</h3>
+    <ul>
+        <% allSkills.forEach(skill => { %>
+        <li>
+            <%= skill.title %>
+        </li>
+        <% }) %>
+    </ul>
+</div>
