@@ -152,7 +152,7 @@ will be disabled and/or hidden in the UI.
             } catch (unusedErr) { /*…*/}
             if ((sails.config.environment === 'staging' || sails.config.environment === 'production') && !req.isSocket && req.method === 'GET' && req.subdomains[0] !== configuredBaseSubdomain) {
               sails.log.info('Redirecting GET request from `'+req.subdomains[0]+'.` subdomain...');
-              return res.redirect(sails.config.custom.baseUrl+req.url);
+              //return res.redirect(sails.config.custom.baseUrl+req.url);
             }//•
 
             // No session? Proceed as usual.

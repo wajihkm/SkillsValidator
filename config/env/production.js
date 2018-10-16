@@ -368,7 +368,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'skills-validator.herokuapp.com',
+    baseUrl: 'https://skills-validator.herokuapp.com',
     internalEmailAddress: 'wajihkm7@gmail.com',
 
     // mailgunDomain: 'mg.example.com',
