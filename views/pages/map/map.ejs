@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>ArcGIS DevLabs: Create a JavaScript starter app</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script>
+        var search;
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            //*** ADD ***//
+            "esri/widgets/Search",
+            "dojo/domReady!"
+            //*** ADD ***//
+        ], function (Map, MapView, Search) {
+
+            var map = new Map({
+                basemap: "topo-vector"
+            });
+
+            var view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [55.71511, 25.09042],
+                zoom: 10
+            });
+
+            // Search widget
+            search = new Search({
+                view: view
+            });
+            // view.ui.add(search, "top-right");
+
+            var skills = ["Dubai", "Sharjah", "Abu Dhabi"];
+            var select = document.createElement("select", "");
+            skills.forEach(function (p) {
+                var option = document.createElement("option");
+                option.value = p;
+                option.innerHTML = p;
+                select.appendChild(option);
+            });
+            view.ui.add(select, "top-right");
+
+            // Listen for category changes and find places
+            select.addEventListener('change', function (event) {
+                search.searchTerm = event.target.value;
+                search.search();
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>

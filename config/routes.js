@@ -59,6 +59,8 @@ module.exports.routes = {
   'POST /api/v1/admin/skill-testing': { action: 'admin/skill-testing' },
   'POST /api/v1/admin/skill-judge': { action: 'admin/skill-judge' },
 
+  'GET /map': { view: 'pages/map/map', locals: { layout: false } },
+  // 'GET /map/skills': { view: 'pages/map/skills', locals: { layout: false } },
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
