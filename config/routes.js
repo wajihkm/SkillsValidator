@@ -60,7 +60,13 @@ module.exports.routes = {
   'POST /api/v1/admin/skill-judge': { action: 'admin/skill-judge' },
 
   'GET /map': { view: 'pages/map/map', locals: { layout: false } },
+  'GET /gis': { view: 'pages/map/gis', locals: { layout: 'layouts/layout.map' } },
   // 'GET /map/skills': { view: 'pages/map/skills', locals: { layout: false } },
+
+
+  'GET  /complaint/view-add': { view: 'pages/complaint/add', locals: { layout: 'layouts/layout.map' } },
+  'POST /api/v1/complaint/add': { action: 'complaint/add' },
+  'GET  /api/v1/complaint/all': { action: 'complaint/all', locals: { layout: 'layouts/layout.map' } },
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

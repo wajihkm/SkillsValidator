@@ -1,0 +1,85 @@
+<div class="container">
+    <h4>Complaints:</h4>
+    <div class="row">
+        <div class="col">
+            <ul class="list-group">
+                <% complaints.forEach(complaint => { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><strong>
+                            <%= complaint.title %>
+                        </strong>
+                        <br>
+                        <%= complaint.owner.fullName %>
+                        <small>(
+                            <%= complaint.owner.emailAddress %>)</small>
+                    </span>
+
+                    <div>
+                        <!-- <%= complaint.status %> -->
+                    </div>
+
+                    <div>
+                        <button type="button" onclick="locate('<%= complaint.lat %>','<%= complaint.lng %>','<%= complaint.title %>','<%= complaint.desc %>','<%= complaint.status %>')"
+                            class="btn btn-sm btn-outline-info">on
+                            Map</button>
+                    </div>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div class="col">
+            <div id="map" style="min-height: 400px;"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var map;
+    var point;
+    var simpleMarkerSymbol;
+    var graphic;
+    var pin;
+
+    require([
+        "esri/map",
+        "esri/symbols/SimpleMarkerSymbol",
+        "esri/geometry/Point",
+        "esri/graphic",
+        "esri/layers/GraphicsLayer",
+        "esri/Color",
+        "dojo/dom",
+        "dojo/domReady!"],
+        function (Map, SimpleMarkerSymbol, Point, Graphic, GraphicsLayer, Color, dom) {
+            map = new Map("map", {
+                basemap: "topo",
+                center: [55.45, 25.15],
+                zoom: 13
+            });
+            point = Point;
+            simpleMarkerSymbol = SimpleMarkerSymbol;
+            graphic = Graphic;
+        });
+
+    function locate(lat, lng, title, desc, status) {
+
+        map.graphics.clear();
+
+        pin = new point(lng, lat);
+        var s = new simpleMarkerSymbol().setSize(20);
+        var g = new graphic(pin, s);
+
+        map.graphics.add(g);
+
+        map.infoWindow.setTitle(title);
+        map.infoWindow.setContent(
+            "<b>Title :</b> " + title +
+            "<br><b>Description :</b> " + desc+
+            "<br><b>Status :</b> "+status
+        );
+        map.infoWindow.show(pin);
+
+        map.centerAt(pin);
+    }
+</script>

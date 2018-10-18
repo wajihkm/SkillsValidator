@@ -1,0 +1,78 @@
+<script>
+    var map;
+    var pin;
+
+    require([
+        "esri/map",
+        "esri/symbols/SimpleMarkerSymbol",
+        "esri/geometry/Point",
+        "esri/graphic",
+        "esri/layers/GraphicsLayer",
+        "esri/Color",
+        "dojo/dom",
+        "dojo/domReady!"],
+        function (Map, SimpleMarkerSymbol, Point, Graphic, GraphicsLayer, Color, dom) {
+            map = new Map("map", {
+                basemap: "topo",
+                center: [55.45, 25.15],
+                zoom: 13
+            });
+
+            map.on('click', (evt) => {
+                const lat = evt.mapPoint.getLatitude();
+                const lng = evt.mapPoint.getLongitude();
+                dom.byId('lat').value = lat;
+                dom.byId('lng').value = lng;
+
+                map.graphics.clear();
+
+                pin = new Point(lng, lat);
+                var s = new SimpleMarkerSymbol().setSize(20);
+                var g = new Graphic(pin, s);
+
+                map.graphics.add(g);
+            });
+        });
+</script>
+
+<div class="container">
+    <% if (!me) { %>
+    <div class="alert alert-danger" role="alert">
+        You are not logged in
+    </div>
+    <%}%>
+    <form action="/api/v1/complaint/add" method="post">
+        <div class="row">
+            <div class="col">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" placeholder="Compalint title" required>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="desc">Description</label>
+                <textarea name="desc" placeholder="Enter info" class="form-control" required></textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label>Set complaint location</label>
+                <div id="map" style="min-height: 200px;"></div>
+
+                <input type="hidden" name="lat" id="lat" required>
+                <input type="hidden" name="lng" id="lng" required>
+            </div>
+        </div>
+
+        <div class="row col">
+            <button type="submit" class="btn btn-primary mb-2">Add</button>
+        </div>
+    </form>
+
+</div>
