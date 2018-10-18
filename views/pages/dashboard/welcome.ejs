@@ -1,6 +1,7 @@
 <div id="welcome">
   <div class="container">
-    <h1>Welcome <%= me.fullName %>!</h1>
+    <h1>Welcome
+      <%= me.fullName %>!</h1>
     <hr />
     <div class="buttons">
       <!-- <a class="btn btn-dark" href="/map" target="_blank">Map test</a> -->
@@ -9,16 +10,43 @@
     <br>
 
     <% if(me.isSuperAdmin) { %>
-    <a class="btn btn-success" href="/admin/manage-skills">Manage Skills</a>
-    <hr>
-    <a class="btn btn-warning" href="/api/v1/complaint/all">View Complaints</a>
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col">
+        <a class="btn btn-lg btn-outline-success" href="/admin/manage-skills">
+          <i class="fa fa-laptop"></i><br>
+          Manage Skills
+        </a>
+      </div>
+      <div class="col">
+        <a class="btn btn-lg btn-outline-warning" href="/api/v1/complaint/all">
+          <i class="fa fa-map-marker"></i><br>
+          View Complaints</a>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
     <% } else { %>
-    <a class="btn btn-success" href="/user/skills">My Skills</a>
-    <hr>
-    <a class="btn btn-warning" href="/complaint/view-add">New Complaint</a>
+
+    <div class="row">
+        <div class="col-2"></div>
+      <div class="col">
+        <a class="btn btn-lg btn-outline-success" href="/user/skills">
+          <i class="fa fa-laptop"></i><br>
+          My Skills
+        </a>
+      </div>
+      <div class="col">
+        <a class="btn btn-lg btn-outline-warning" href="/complaint/view-add">
+          <i class="fa fa-map-marker"></i><br>
+          New Complaint
+        </a>
+      </div>
+      <div class="col-2"></div>
+    </div>
     <% } %>
   </div>
-
 
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
